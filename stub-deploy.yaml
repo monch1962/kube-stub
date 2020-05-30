@@ -23,7 +23,10 @@ spec:
     - name: stubby
       image: spectolabs/hoverfly:latest
       ports:
-        - containerPort: 80
+        - containerPort: 8555
+          name: admin
+        - containerPort: 8880
+          name: access
   affinity:
     podAntiAffinity:
       preferredDuringSchedulingIgnoredDuringExecution:
@@ -46,7 +49,7 @@ spec:
       containers:
       - name: deploy-stub-config
         image: curlimages/curl:latest
-        command: ["curl", "-T", "stub-config.json", "http://stub:8500"]
+        command: ["curl", "-T", "stub-config.json", "http://stub:8555"]
       restartPolicy: Never
   backoffLimit: 4
 ---
@@ -61,7 +64,7 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 9376
+      targetPort: 8880
 ---
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
