@@ -20,7 +20,7 @@ spec:
       labels:
         app: stub
   containers:
-    - name: stubby
+    - name: hoverfly
       image: spectolabs/hoverfly:latest
       ports:
         - containerPort: 8555
