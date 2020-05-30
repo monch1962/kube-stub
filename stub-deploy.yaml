@@ -73,7 +73,7 @@ metadata:
   #namespace: stub
 spec:
   backend:
-    serviceName: stub
+    serviceName: stub-service
     servicePort: 80
 ---
 apiVersion: autoscaling/v2beta2
