@@ -18,6 +18,10 @@ To PUT the stub configuration defined in `./stub-configs/stub-config.json` to th
 
 `$ curl -t ./stub-configs/stub-config.json http://EXTERNAL-IP/api/v2/simulation`
 
+To PUT the stub configuration defined at a URL, use e.g.
+
+`$ curl -t https://raw.githubusercontent.com/monch1962/kube-stub/master/stub-config.json http://EXTERNAL-IP/api/v2/simulation`
+
 Note that this will overwrite any existing stub configuration for the stub
 
 The changed configuration can then be verified via
