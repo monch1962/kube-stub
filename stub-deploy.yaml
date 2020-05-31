@@ -25,11 +25,24 @@ spec:
       - name: hoverfly
         image: docker.io/spectolabs/hoverfly
         #image: spectolabs/hoverfly:latest
+        command: ["/bin/hoverfly"]
+        args: ["-listen-on-host=0.0.0.0", "-webserver"]
         ports:
           - containerPort: 8500
             name: admin
           - containerPort: 8888
             name: access
+        readinessProbe:
+          initialDelaySeconds: 10
+          httpGet:
+            path: /api/health
+            port: 8888
+        livenessProbe:
+          initialDelaySeconds: 2
+          periodSeconds: 5
+          httpGet:
+            path: /api/health
+            port: 8888
   affinity:
     podAntiAffinity:
       preferredDuringSchedulingIgnoredDuringExecution:
@@ -72,8 +85,11 @@ spec:
     spec:
       containers:
       - name: deploy-stub-config
-        image: curlimages/curl:latest
-        command: ["curl", "-T", "stub-config.json", "http://stub-service:8500"]
+        image: buildpack-deps:curl
+        args:
+        - /bin/sh
+        - -ec
+        - curl -T stub-config.json http://stub-service:8500
       restartPolicy: Never
   backoffLimit: 4
 ---
