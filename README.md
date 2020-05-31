@@ -31,6 +31,17 @@ We can then access the stub via e.g.
 `$ curl http://EXTERNAL-IP:8500/bar`
 
 ---
+## Features
+-	Stand up a new stub namespace inside Kubernetes (I’m going with one namespace per stub, and I’ve confirmed that we can have multiple stub configs running simultaneously in their own namespace)
+-	Automatically deploy a stub config to that namespace from a URL (e.g. github, Bamboo, CodeCommit, etc.) when the stub instance is created
+    -	Each stub instance initially gets 100Mb RAM, and is capped at 200Mb. That’s to prevent one load test from taking over the entire cluster and blocking other projects
+    -	Each stub instance runs a healthcheck every 2 seconds, and will be killed off and restarted if it fails that check
+-	Stand up a load balancer (Kubernetes Service) in front of that stub, and expose the load balancer IP address to the Internet
+    -	Each namespace gets its own IP address, so we can run e.g. one stub per team or one stub per backend system
+-	Auto scale that stub (currently up to 30 instances, but that’s easily changed), based on CPU load
+    -	New stub instances will try to load balance across data centres, so that the service will stay up as long as there’s a single cloud data centre still running. I’ve got that working for GCP, but this is cloud-specific config that will need to be tweaked for AWS
+
+
 ## To do
 - current config works for GCP; get it working for AWS + Azure
 - document sample firewall or VPC rules for each cloud to restrict access
