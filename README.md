@@ -2,6 +2,7 @@
 
 ## To deploy
 `$ kubectl delete namespace stub`
+
 `$ NAMESPACE=stub ./deploy-stub.sh`
 
 Deployment will take a few minutes. Keep trying
