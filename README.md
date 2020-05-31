@@ -26,3 +26,6 @@ Note that this will overwrite any existing stub configuration for the stub
 
 The changed configuration can then be verified via
 `$ curl http://EXTERNAL-IP/api/v2/simulation`
+
+We can then access the stub via e.g.
+`$ curl http://EXTERNAL-IP:8500/bar`

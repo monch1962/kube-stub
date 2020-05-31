@@ -79,23 +79,22 @@ spec:
       name: admin
   type: LoadBalancer
 ---
-apiVersion: batch/v1
-kind: Job
-metadata:
-  name: deploy-stub-config
-  #namespace: stub
-spec:
-  template:
-    spec:
-      containers:
-      - name: deploy-stub-config
-        image: buildpack-deps:curl
-        args:
-        - /bin/sh
-        - -ec
-        - curl -T stub-config.json http://stub-service:8500/api/v2/simulation
-      restartPolicy: Never
-  backoffLimit: 4
+#apiVersion: batch/v1
+#kind: Job
+#metadata:
+#  name: deploy-stub-config
+#spec:
+#  template:
+#    spec:
+#      containers:
+#      - name: deploy-stub-config
+#        image: buildpack-deps:curl
+#        args:
+#        - /bin/sh
+#        - -ec
+#        - curl -T stub-config.json http://stub-service:8500/api/v2/simulation
+#      restartPolicy: Never
+#  backoffLimit: 4
 ---
 #apiVersion: networking.k8s.io/v1beta1
 #kind: Ingress
