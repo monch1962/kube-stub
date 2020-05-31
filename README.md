@@ -14,9 +14,9 @@ Then
 should return a response from Hoverfly
 
 ## To configure
-To PUT the stub configuration defined in `./stub-config.json` to the stub, use
+To PUT the stub configuration defined in `./stub-configs/stub-config.json` to the stub, use
 
-`$ curl -t stub-config.json http://EXTERNAL-IP/api/v2/simulation`
+`$ curl -t ./stub-configs/stub-config.json http://EXTERNAL-IP/api/v2/simulation`
 
 Note that this will overwrite any existing stub configuration for the stub
 

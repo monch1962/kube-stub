@@ -24,7 +24,11 @@ spec:
       containers:
       - name: hoverfly
         image: docker.io/spectolabs/hoverfly
-        #image: spectolabs/hoverfly:latest
+        resources:
+          limits:
+            memory: "200Mi"
+          requests:
+            memory: "100Mi"
         command: ["/bin/hoverfly"]
         args: ["-listen-on-host=0.0.0.0", "-webserver"]
         ports:
@@ -89,7 +93,7 @@ spec:
         args:
         - /bin/sh
         - -ec
-        - curl -T stub-config.json http://stub-service:8500
+        - curl -T stub-config.json http://stub-service:8500/api/v2/simulation
       restartPolicy: Never
   backoffLimit: 4
 ---
