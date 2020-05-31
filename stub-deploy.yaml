@@ -33,9 +33,9 @@ spec:
         args: ["-listen-on-host=0.0.0.0", "-webserver", "-import", "https://raw.githubusercontent.com/monch1962/kube-stub/master/stub-configs/stub-config.json"]
         ports:
           - containerPort: 8500
-            name: admin
-          - containerPort: 8888
             name: access
+          - containerPort: 8888
+            name: admin
         readinessProbe:
           initialDelaySeconds: 10
           httpGet:
@@ -70,13 +70,13 @@ spec:
     app: stub
   ports:
     - protocol: TCP
-      port: 80
+      port: 8888
       targetPort: 8888
-      name: stub
-    - protocol: TCP
-      port: 8500
-      targetPort: 8500
       name: admin
+    - protocol: TCP
+      port: 80
+      targetPort: 8500
+      name: stub
   type: LoadBalancer
 ---
 #apiVersion: batch/v1
