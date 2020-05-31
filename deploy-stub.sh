@@ -10,4 +10,4 @@ if [ -z ${STUB_CONFIG} ]; then
 fi
 
 kubectl create namespace $NAMESPACE
-kubectl apply -f stub-config.yaml --namespace $NAMESPACE
+kubectl apply -f stub-deploy.yaml --namespace $NAMESPACE --validate=false
