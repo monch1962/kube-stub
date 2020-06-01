@@ -10,7 +10,7 @@ Deployment will take a few minutes. Keep trying
 until you get an EXTERNAL-IP returning
 
 Then
-`$ curl http://EXTERNAL-IP/api/health`
+`$ curl http://EXTERNAL-IP:8888/api/health`
 should return a response from Hoverfly
 
 ## To configure a running stub (not recommended!)
@@ -28,7 +28,7 @@ The changed configuration can then be verified via
 `$ curl http://EXTERNAL-IP/api/v2/simulation`
 
 We can then access the stub via e.g.
-`$ curl http://EXTERNAL-IP:8500/bar`
+`$ curl http://EXTERNAL-IP/bar`
 
 ---
 ## Features
