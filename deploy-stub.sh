@@ -11,3 +11,4 @@ fi
 
 kubectl create namespace $NAMESPACE
 kubectl apply -f stub-deploy.yaml --namespace $NAMESPACE --validate=false
+kubectl apply -f gitops.yaml --namespace $NAMESPACE
