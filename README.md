@@ -40,7 +40,7 @@ We can then access the stub via e.g.
     -	Each namespace gets its own IP address, so we can run e.g. one stub per team or one stub per backend system
 -	Auto scale that stub (currently up to 30 instances, but that’s easily changed), based on CPU load
     -	New stub instances will try to load balance across data centres, so that the service will stay up as long as there’s a single cloud data centre still running. I’ve got that working for GCP, but this is cloud-specific config that will need to be tweaked for AWS
--   After the initial deployment, gitops is implemented by forcing a redeployment every 5 minutes. This will have the effect of redeploying any changes to the stub configuration file, thus making e.g. a git repository the sole point of stub reconfiguration
+-   After the initial deployment, a gitops-type process is implemented by forcing a redeployment every 5 minutes. Kubernetes ensures that it spins up a new pod before terminating an old pod; that way there's no disruption to service. This will have the effect of redeploying any changes to the stub configuration file, thus making e.g. a git repository the sole point of stub reconfiguration
 
 
 ## To do
