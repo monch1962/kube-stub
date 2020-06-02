@@ -30,6 +30,14 @@ The changed configuration can then be verified via
 We can then access the stub via e.g.
 `$ curl http://EXTERNAL-IP/bar`
 
+## Dependencies
+The following set of externally-hosted Docker images are being consumed by this solution:
+- docker.io/spectolabs/hoverfly
+- docker.io/mikefarah/yq
+
+For production use, it's recommended that copies of these images be brought in-house and hosted within an internal registry. Changes should then be made this repo's YAML files to point to the in-house versions.
+This will prevent breaking changes or reduced access to the Internet-hosted images from impacting this system.
+
 ---
 ## Features
 -	Stand up a new stub namespace inside Kubernetes (I’m going with one namespace per stub, and I’ve confirmed that we can have multiple stub configs running simultaneously in their own namespace)
